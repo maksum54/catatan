@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-app: var(--app);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-hover: var(--hover);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-danger: var(--danger);
+}
+
+:root, [data-theme="dark"] {
+  color-scheme: dark;
+  --app: #0f1115; --surface: #16191f; --raised: #1d2129; --hover: #232832; --line: #2a303b;
+  --fg: #e8eaee; --muted: #8f97a6; --accent: #f5b83d; --accent-fg: #1a1405; --danger: #e5534b;
+}
+[data-theme="light"] {
+  color-scheme: light;
+  --app: #f4f5f7; --surface: #ffffff; --raised: #ffffff; --hover: #eef0f3; --line: #e1e4ea;
+  --fg: #1b1f27; --muted: #677084; --accent: #b87a00; --accent-fg: #ffffff; --danger: #c93b33;
+}
+
+html, body, #root { height: 100%; }
+body {
+  margin: 0; background: var(--app); color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px; -webkit-font-smoothing: antialiased;
+}
+* { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+input[type="date"] { color-scheme: inherit; }
+
+@layer components {
+  .btn { @apply inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-2.5 py-1.5 text-[13px] font-medium text-fg hover:bg-hover disabled:opacity-50 cursor-pointer whitespace-nowrap; }
+  .btn-primary { @apply inline-flex items-center gap-1.5 rounded-md bg-accent px-3 py-1.5 text-[13px] font-semibold text-accent-fg hover:opacity-90 disabled:opacity-50 cursor-pointer whitespace-nowrap; }
+  .btn-ghost { @apply inline-flex items-center justify-center gap-1.5 rounded-md px-1.5 py-1.5 text-muted hover:bg-hover hover:text-fg cursor-pointer; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-md border border-line px-1.5 py-0.5 text-xs text-fg hover:bg-hover cursor-pointer whitespace-nowrap; }
+  .input { @apply w-full rounded-md border border-line bg-surface px-2.5 py-1.5 text-sm text-fg placeholder:text-muted; }
+  .menu-item { @apply flex w-full items-center gap-2 rounded px-2 py-1.5 text-left text-[13px] text-fg hover:bg-hover cursor-pointer; }
+  .card { @apply rounded-lg border border-line bg-surface; }
+}
